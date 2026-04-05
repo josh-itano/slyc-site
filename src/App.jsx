@@ -286,7 +286,7 @@ function Hero({ setPage }) {
             onMouseEnter={e => { e.target.style.background = C.orangeLight; e.target.style.transform = "translateY(-2px)"; }}
             onMouseLeave={e => { e.target.style.background = C.orange; e.target.style.transform = "translateY(0)"; }}
           >Shop Apparel</a>
-          <a onClick={() => document.getElementById("members")?.scrollIntoView({ behavior: "smooth" })}
+          <a onClick={() => setPage("members")}
             style={{ border: "1px solid rgba(240,242,245,0.3)", color: C.cream, padding: "16px 40px", textDecoration: "none", fontSize: 12, fontWeight: 500, letterSpacing: 3, textTransform: "uppercase", cursor: "pointer", transition: "all 0.3s" }}
             onMouseEnter={e => { e.target.style.borderColor = C.orange; e.target.style.color = C.orange; }}
             onMouseLeave={e => { e.target.style.borderColor = "rgba(240,242,245,0.3)"; e.target.style.color = C.cream; }}
@@ -360,6 +360,7 @@ function About() {
 
 // ─── TRIPS SECTION ───
 function TripsSection() {
+  const trips = TRIPS;
   const [hovered, setHovered] = useState(null);
   return (
     <section id="trips" style={{ background: C.navy, padding: "120px 40px", position: "relative", overflow: "hidden" }}>
@@ -373,7 +374,7 @@ function TripsSection() {
         </div>
       </Reveal>
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
-        {TRIPS.map((t, i) => (
+        {trips.map((t, i) => (
           <Reveal key={i} delay={i * 0.1}>
             <div
               style={{ position: "relative", height: 450, overflow: "hidden", cursor: "pointer" }}
@@ -397,6 +398,7 @@ function TripsSection() {
 
 // ─── EVENTS SECTION ───
 function EventsSection() {
+  const events = EVENTS;
   return (
     <section id="events" style={{ padding: "140px 40px", maxWidth: 1200, margin: "0 auto" }}>
       <Reveal>
@@ -406,7 +408,7 @@ function EventsSection() {
         </div>
       </Reveal>
       <div>
-        {EVENTS.map((e, i) => (
+        {events.map((e, i) => (
           <Reveal key={i} delay={i * 0.08}>
             <div
               style={{ display: "grid", gridTemplateColumns: "120px 1fr auto", gap: 40, alignItems: "center", padding: "40px 0", borderBottom: `1px solid rgba(17,34,77,0.1)`, borderTop: i === 0 ? `1px solid rgba(17,34,77,0.1)` : "none", cursor: "pointer", transition: "padding-left 0.3s" }}
@@ -490,7 +492,7 @@ function LifestyleQuote() {
 }
 
 // ─── MEMBERS SECTION ───
-function MembersSection() {
+function MembersSection({ setPage }) {
   const perks = [
     { icon: <Anchor size={22} color={C.orange} />, title: "Exclusive Events", desc: "Priority access to every party, lake day, and chaotic gathering we throw." },
     { icon: <Plane size={22} color={C.orange} />,  title: "Trip Access",      desc: "First dibs on semi-annual trips. The kind of trips you can't post about." },
@@ -521,8 +523,8 @@ function MembersSection() {
           <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, color: C.cream, fontWeight: 300, marginBottom: 12, position: "relative", zIndex: 1 }}>Already a member?</h3>
           <p style={{ fontSize: 14, color: "rgba(240,242,245,0.5)", marginBottom: 32, position: "relative", zIndex: 1 }}>Access the members-only app for event RSVPs, trip details, and more.</p>
           <a
-            href="#"
-            style={{ display: "inline-block", background: C.orange, color: C.white, padding: "16px 48px", textDecoration: "none", fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", position: "relative", zIndex: 1, transition: "all 0.4s" }}
+            onClick={() => setPage("members")}
+            style={{ display: "inline-block", background: C.orange, color: C.white, padding: "16px 48px", textDecoration: "none", fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", position: "relative", zIndex: 1, transition: "all 0.4s", cursor: "pointer" }}
             onMouseEnter={e => { e.target.style.background = C.orangeLight; e.target.style.transform = "translateY(-2px)"; }}
             onMouseLeave={e => { e.target.style.background = C.orange; e.target.style.transform = "translateY(0)"; }}
           >Member Login</a>
@@ -537,7 +539,7 @@ function Footer({ setPage }) {
   const cols = [
     { title: "Club",    links: [{ label: "About",      action: () => setPage("home") }, { label: "Trips",      action: () => setPage("home") }, { label: "Events",     action: () => setPage("home") }, { label: "Membership", action: () => setPage("home") }] },
     { title: "Shop",    links: [{ label: "All Apparel", action: () => setPage("shop") }, { label: "Hoodies",    action: () => setPage("shop") }, { label: "Tees",       action: () => setPage("shop") }, { label: "Accessories",action: () => setPage("shop") }] },
-    { title: "Connect", links: [{ label: "Instagram" }, { label: "TikTok" }, { label: "Contact" }, { label: "Member Login" }] },
+    { title: "Connect", links: [{ label: "Instagram" }, { label: "TikTok" }, { label: "Contact" }, { label: "Member Login", action: () => setPage("members") }] },
   ];
   return (
     <footer style={{ background: C.black, padding: "80px 40px 40px" }}>
@@ -761,7 +763,7 @@ function ProductPage({ productId, setPage, cart, setCart, setSelectedProduct }) 
 }
 
 // ─── MEMBERS PAGE ───
-function MembersPage() {
+function MembersPage({ setPage }) {
   return (
     <div style={{ paddingTop: 100 }}>
       <div style={{ background: C.navy, padding: "100px 40px", textAlign: "center", position: "relative", overflow: "hidden" }}>
@@ -797,7 +799,110 @@ function MembersPage() {
           </p>
         </div>
         <p style={{ textAlign: "center", fontSize: 13, color: C.textMuted, marginTop: 32 }}>
-          Not a member? <a href="#" style={{ color: C.orange, textDecoration: "none", fontWeight: 600 }}>Apply for membership</a>
+          Not a member? <a onClick={() => setPage("apply")} style={{ color: C.orange, textDecoration: "none", fontWeight: 600, cursor: "pointer" }}>Apply for membership</a>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ─── APPLY PAGE ───
+function ApplyPage({ setPage }) {
+  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", instagram: "", city: "", why: "", referral: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const field = (label, key, type = "text", placeholder = "") => (
+    <div style={{ marginBottom: 20 }}>
+      <label style={{ display: "block", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: C.navy, marginBottom: 8, fontWeight: 600 }}>{label}</label>
+      {key === "why" ? (
+        <textarea
+          rows={4}
+          placeholder={placeholder}
+          value={form[key]}
+          onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
+          style={{ width: "100%", padding: "14px 16px", border: `1px solid ${C.creamDark}`, background: C.cream, fontSize: 14, color: C.navy, outline: "none", transition: "border-color 0.3s", resize: "vertical", fontFamily: "inherit" }}
+          onFocus={e => e.target.style.borderColor = C.blue}
+          onBlur={e => e.target.style.borderColor = C.creamDark}
+        />
+      ) : (
+        <input
+          type={type}
+          placeholder={placeholder}
+          value={form[key]}
+          onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
+          style={{ width: "100%", padding: "14px 16px", border: `1px solid ${C.creamDark}`, background: C.cream, fontSize: 14, color: C.navy, outline: "none", transition: "border-color 0.3s" }}
+          onFocus={e => e.target.style.borderColor = C.blue}
+          onBlur={e => e.target.style.borderColor = C.creamDark}
+        />
+      )}
+    </div>
+  );
+
+  if (submitted) {
+    return (
+      <div style={{ paddingTop: 100 }}>
+        <div style={{ background: C.navy, padding: "100px 40px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+          <div style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px)" }} />
+          <img src="/SLYC_Webdark.png" alt="" style={{ width: 100, filter: "brightness(10)", marginBottom: 32, position: "relative", zIndex: 1 }} />
+          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(36px,5vw,56px)", fontWeight: 300, color: C.cream, position: "relative", zIndex: 1 }}>Application Received</h1>
+          <p style={{ fontSize: 15, color: "rgba(240,242,245,0.5)", marginTop: 16, position: "relative", zIndex: 1 }}>We'll be in touch. Don't call us, we'll call you.</p>
+        </div>
+        <div style={{ maxWidth: 480, margin: "80px auto", padding: "0 40px", textAlign: "center" }}>
+          <p style={{ fontSize: 14, color: C.textMuted, marginBottom: 32, lineHeight: 1.7 }}>
+            Your application has been submitted. The membership committee reviews applications on a rolling basis. Keep an eye on your inbox.
+          </p>
+          <a onClick={() => setPage("home")} style={{ display: "inline-block", background: C.navy, color: C.cream, padding: "16px 40px", fontSize: 11, letterSpacing: 3, textTransform: "uppercase", fontWeight: 600, cursor: "pointer", transition: "background 0.3s" }}
+            onMouseEnter={e => e.target.style.background = C.orange}
+            onMouseLeave={e => e.target.style.background = C.navy}
+          >Back to Home</a>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ paddingTop: 100 }}>
+      <div style={{ background: C.navy, padding: "100px 40px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px)" }} />
+        <img src="/SLYC_Webdark.png" alt="" style={{ width: 100, filter: "brightness(10)", marginBottom: 32, position: "relative", zIndex: 1 }} />
+        <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(36px,5vw,56px)", fontWeight: 300, color: C.cream, position: "relative", zIndex: 1 }}>Apply for Membership</h1>
+        <p style={{ fontSize: 15, color: "rgba(240,242,245,0.5)", marginTop: 16, position: "relative", zIndex: 1 }}>Membership is selective. We're looking for the right people — not just anyone.</p>
+      </div>
+      <div style={{ maxWidth: 560, margin: "0 auto", padding: "80px 40px" }}>
+        <div style={{ background: C.white, border: `1px solid ${C.creamDark}`, padding: 48 }}>
+          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, color: C.navy, marginBottom: 8, fontWeight: 400 }}>Membership Application</h2>
+          <p style={{ fontSize: 13, color: C.textMuted, marginBottom: 36 }}>All fields are placeholder. Nothing gets submitted anywhere (yet).</p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 4 }}>
+            <div>
+              <label style={{ display: "block", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: C.navy, marginBottom: 8, fontWeight: 600 }}>First Name</label>
+              <input type="text" placeholder="First" value={form.firstName} onChange={e => setForm(f => ({ ...f, firstName: e.target.value }))}
+                style={{ width: "100%", padding: "14px 16px", border: `1px solid ${C.creamDark}`, background: C.cream, fontSize: 14, color: C.navy, outline: "none", transition: "border-color 0.3s" }}
+                onFocus={e => e.target.style.borderColor = C.blue} onBlur={e => e.target.style.borderColor = C.creamDark} />
+            </div>
+            <div>
+              <label style={{ display: "block", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: C.navy, marginBottom: 8, fontWeight: 600 }}>Last Name</label>
+              <input type="text" placeholder="Last" value={form.lastName} onChange={e => setForm(f => ({ ...f, lastName: e.target.value }))}
+                style={{ width: "100%", padding: "14px 16px", border: `1px solid ${C.creamDark}`, background: C.cream, fontSize: 14, color: C.navy, outline: "none", transition: "border-color 0.3s" }}
+                onFocus={e => e.target.style.borderColor = C.blue} onBlur={e => e.target.style.borderColor = C.creamDark} />
+            </div>
+          </div>
+          <div style={{ marginBottom: 4 }}>{field("Email", "email", "email", "you@example.com")}</div>
+          <div style={{ marginBottom: 4 }}>{field("Phone", "phone", "tel", "(555) 000-0000")}</div>
+          <div style={{ marginBottom: 4 }}>{field("Instagram Handle", "instagram", "text", "@yourhandle")}</div>
+          <div style={{ marginBottom: 4 }}>{field("City", "city", "text", "Denver, CO")}</div>
+          <div style={{ marginBottom: 4 }}>{field("Why do you want to join SLYC?", "why", "text", "Tell us why you belong here...")}</div>
+          <div style={{ marginBottom: 32 }}>{field("Referred by a member?", "referral", "text", "Member's name (optional)")}</div>
+
+          <button
+            onClick={() => setSubmitted(true)}
+            style={{ width: "100%", padding: "16px", background: C.navy, color: C.cream, border: "none", fontSize: 12, letterSpacing: 3, textTransform: "uppercase", fontWeight: 700, cursor: "pointer", transition: "background 0.3s" }}
+            onMouseEnter={e => e.target.style.background = C.orange}
+            onMouseLeave={e => e.target.style.background = C.navy}
+          >Submit Application</button>
+        </div>
+        <p style={{ textAlign: "center", fontSize: 13, color: C.textMuted, marginTop: 32 }}>
+          Already a member? <a onClick={() => setPage("members")} style={{ color: C.orange, textDecoration: "none", fontWeight: 600, cursor: "pointer" }}>Sign in</a>
         </p>
       </div>
     </div>
@@ -815,7 +920,7 @@ function HomePage({ setPage, setSelectedProduct }) {
       <FeaturedProducts setPage={setPage} setSelectedProduct={setSelectedProduct} />
       <EventsSection />
       <LifestyleQuote />
-      <MembersSection />
+      <MembersSection setPage={setPage} />
     </>
   );
 }
@@ -850,7 +955,8 @@ export default function App() {
       {page === "home"    && <HomePage setPage={setPage} setSelectedProduct={setSelectedProduct} />}
       {page === "shop"    && <ShopPage setPage={setPage} setSelectedProduct={setSelectedProduct} />}
       {page === "product" && <ProductPage productId={selectedProduct} setPage={setPage} cart={cart} setCart={setCart} setSelectedProduct={setSelectedProduct} />}
-      {page === "members" && <MembersPage />}
+      {page === "members" && <MembersPage setPage={setPage} />}
+      {page === "apply"   && <ApplyPage setPage={setPage} />}
       <Footer setPage={p => { setPage(p); window.scrollTo(0, 0); }} />
     </div>
   );
