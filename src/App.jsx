@@ -812,8 +812,8 @@ function HomePage({ setPage, setSelectedProduct }) {
       <Marquee />
       <About />
       <TripsSection />
-      <EventsSection />
       <FeaturedProducts setPage={setPage} setSelectedProduct={setSelectedProduct} />
+      <EventsSection />
       <LifestyleQuote />
       <MembersSection />
     </>
