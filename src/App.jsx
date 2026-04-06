@@ -64,7 +64,7 @@ function ProductImage({ product, style = {}, showQuick = true, onClick }) {
       onMouseLeave={() => setHovered(false)}
       onClick={onClick}
     >
-      <img src="/SLYC_Webdark.png" alt="" style={{ width: 80, opacity: hovered ? 0.25 : 0.12, filter: "brightness(10)", transition: "all 0.5s", transform: hovered ? "scale(1.1)" : "scale(1)" }} />
+      <span style={{ fontSize: 22, fontWeight: 900, color: C.white, letterSpacing: 4, opacity: hovered ? 0.25 : 0.12, transition: "all 0.5s", transform: hovered ? "scale(1.1)" : "scale(1)", display: "inline-block" }}>SLYC</span>
       {product.badge && (
         <span style={{ position: "absolute", top: 16, left: 16, background: product.badge === "Sold Out" ? C.textMuted : C.orange, color: C.white, fontSize: 9, letterSpacing: 2, textTransform: "uppercase", padding: "6px 12px", fontWeight: 600 }}>
           {product.badge}
@@ -133,7 +133,7 @@ function Nav({ page, setPage, cart, setCartOpen }) {
     <>
       <nav style={navStyle}>
         <a onClick={() => { setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} style={{ cursor: "pointer" }}>
-          <img src="/SLYC_Webdark.png" alt="SLYC" style={{ height: scrolled ? 36 : 44, transition: "height 0.4s" }} />
+          <span style={{ fontSize: scrolled ? 22 : 28, fontWeight: 900, color: C.white, letterSpacing: 6, transition: "font-size 0.4s", display: "inline-block" }}>SLYC</span>
         </a>
         <div style={{ display: "flex", gap: 36, alignItems: "center" }} className="nav-desktop">
           {links.map(l => (
@@ -215,7 +215,7 @@ function CartDrawer({ cart, setCart, open, setOpen, setPage }) {
           ) : cart.map((item, i) => (
             <div key={item.id + item.size} style={{ display: "flex", gap: 16, padding: "20px 0", borderBottom: i < cart.length - 1 ? `1px solid ${C.cream}` : "none" }}>
               <div style={{ width: 80, height: 100, background: item.color, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <img src="/SLYC_Webdark.png" alt="" style={{ width: 30, opacity: 0.15, filter: "brightness(10)" }} />
+                <span style={{ fontSize: 12, fontWeight: 900, color: C.white, letterSpacing: 2, opacity: 0.3 }}>SLYC</span>
               </div>
               <div style={{ flex: 1 }}>
                 <p style={{ fontSize: 14, fontWeight: 500, color: C.navy, marginBottom: 4 }}>{item.name}</p>
@@ -269,7 +269,7 @@ function Hero({ setPage }) {
       <div style={{ position: "absolute", inset: 0, opacity: 0.12, backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")` }} />
       <div style={{ textAlign: "center", zIndex: 2, padding: "0 24px", animation: "fadeUp 1s forwards" }}>
         <div style={{ marginBottom: 40 }}>
-          <img src="/SLYC_Webdark.png" alt="SLYC" style={{ width: 160, filter: "brightness(10)" }} />
+          <span style={{ fontSize: "clamp(48px,8vw,80px)", fontWeight: 900, color: C.white, letterSpacing: 16, display: "block" }}>SLYC</span>
         </div>
         <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(14px,1.8vw,18px)", color: C.orangeLight, letterSpacing: 6, textTransform: "uppercase", marginBottom: 24 }}>
           Sloan's Lake Yacht Club
@@ -345,7 +345,7 @@ function About() {
         <div style={{ position: "relative", height: 600 }}>
           <div style={{ width: "85%", height: "100%", background: `linear-gradient(135deg, ${C.navy}, ${C.navyMid})`, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
             <div style={{ position: "absolute", inset: 20, border: "1px solid rgba(240,242,245,0.12)" }} />
-            <img src="/SLYC_Webdark.png" alt="" style={{ width: 200, opacity: 0.06, filter: "brightness(10)" }} />
+            <span style={{ fontSize: 80, fontWeight: 900, color: C.white, letterSpacing: 16, opacity: 0.06 }}>SLYC</span>
           </div>
           <div style={{ position: "absolute", bottom: -30, right: 0, width: 220, height: 280, background: C.orange, display: "flex", alignItems: "center", justifyContent: "center", padding: 32 }}>
             <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: C.white, fontStyle: "italic", lineHeight: 1.4, textAlign: "center" }}>
@@ -545,7 +545,7 @@ function Footer({ setPage }) {
     <footer style={{ background: C.black, padding: "80px 40px 40px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr 1fr", gap: 60 }}>
         <div>
-          <img src="/SLYC_Webdark.png" alt="SLYC" style={{ height: 60, filter: "brightness(10)", marginBottom: 20 }} />
+          <span style={{ fontSize: 32, fontWeight: 900, color: C.white, letterSpacing: 8, display: "block", marginBottom: 20 }}>SLYC</span>
           <p style={{ fontSize: 13, color: "rgba(240,242,245,0.4)", lineHeight: 1.7, maxWidth: 280 }}>
             Sloan's Lake Yacht Club. A members-only social club born in Denver, CO. No yacht required — just vibes, bad decisions, and great people.
           </p>
@@ -768,7 +768,7 @@ function MembersPage({ setPage }) {
     <div style={{ paddingTop: 100 }}>
       <div style={{ background: C.navy, padding: "100px 40px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px)" }} />
-        <img src="/SLYC_Webdark.png" alt="" style={{ width: 100, filter: "brightness(10)", marginBottom: 32, position: "relative", zIndex: 1 }} />
+        <span style={{ fontSize: 48, fontWeight: 900, color: C.white, letterSpacing: 12, display: "block", marginBottom: 32, position: "relative", zIndex: 1 }}>SLYC</span>
         <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(36px,5vw,56px)", fontWeight: 300, color: C.cream, position: "relative", zIndex: 1 }}>Members Only</h1>
         <p style={{ fontSize: 15, color: "rgba(240,242,245,0.5)", marginTop: 16, position: "relative", zIndex: 1 }}>Access your account, RSVP to events, and manage trip details.</p>
       </div>
@@ -843,7 +843,7 @@ function ApplyPage({ setPage }) {
       <div style={{ paddingTop: 100 }}>
         <div style={{ background: C.navy, padding: "100px 40px", textAlign: "center", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px)" }} />
-          <img src="/SLYC_Webdark.png" alt="" style={{ width: 100, filter: "brightness(10)", marginBottom: 32, position: "relative", zIndex: 1 }} />
+          <span style={{ fontSize: 48, fontWeight: 900, color: C.white, letterSpacing: 12, display: "block", marginBottom: 32, position: "relative", zIndex: 1 }}>SLYC</span>
           <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(36px,5vw,56px)", fontWeight: 300, color: C.cream, position: "relative", zIndex: 1 }}>Application Received</h1>
           <p style={{ fontSize: 15, color: "rgba(240,242,245,0.5)", marginTop: 16, position: "relative", zIndex: 1 }}>We'll be in touch. Don't call us, we'll call you.</p>
         </div>
@@ -864,7 +864,7 @@ function ApplyPage({ setPage }) {
     <div style={{ paddingTop: 100 }}>
       <div style={{ background: C.navy, padding: "100px 40px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.3) 60px, rgba(255,255,255,0.3) 61px)" }} />
-        <img src="/SLYC_Webdark.png" alt="" style={{ width: 100, filter: "brightness(10)", marginBottom: 32, position: "relative", zIndex: 1 }} />
+        <span style={{ fontSize: 48, fontWeight: 900, color: C.white, letterSpacing: 12, display: "block", marginBottom: 32, position: "relative", zIndex: 1 }}>SLYC</span>
         <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(36px,5vw,56px)", fontWeight: 300, color: C.cream, position: "relative", zIndex: 1 }}>Apply for Membership</h1>
         <p style={{ fontSize: 15, color: "rgba(240,242,245,0.5)", marginTop: 16, position: "relative", zIndex: 1 }}>Membership is selective. We're looking for the right people — not just anyone.</p>
       </div>
