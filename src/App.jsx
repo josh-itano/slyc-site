@@ -18,10 +18,10 @@ const C = {
 
 // ─── PRODUCT DATA ───
 const PRODUCTS = [
-  { id: 1,  name: '"No Yacht, No Problem" Heavyweight Hoodie', type: "Hoodie",    price: 85,  badge: "New",      color: C.navy,    sizes: ["S","M","L","XL","XXL"], description: "Heavyweight 400gsm French terry. Oversized fit. Embroidered SLYC crest on chest, back print that lets everyone know you don't need a yacht to live like you have one.", category: "tops" },
+  { id: 1,  name: '"No Yacht, No Problem" Heavyweight Hoodie', type: "Hoodie",    price: 85,  badge: "New",      color: C.navy,    sizes: ["S","M","L","XL","XXL"], description: "Heavyweight 400gsm French terry. Oversized fit. Embroidered SLYC crest on chest, back print that lets everyone know you don't need a yacht to live like you have one.", category: "tops", image: "/products/hoodie_noyacht_noproblem.png" },
   { id: 2,  name: '"Members Only" Classic Tee',                 type: "Tee",       price: 45,  badge: null,       color: C.navyMid, sizes: ["S","M","L","XL","XXL"], description: "Ringspun cotton. Relaxed fit. If you know, you know. Simple SLYC lockup on front, 'Members Only' hit on the back.", category: "tops" },
   { id: 3,  name: "SLYC Dad Hat — Navy",                        type: "Hat",       price: 35,  badge: "Sold Out", color: C.blue,    sizes: ["One Size"],             description: "Unstructured six-panel. Brass buckle closure. Embroidered SLYC logo. The hat that started it all.", category: "accessories" },
-  { id: 4,  name: '"Bad Decisions" Vintage Wash Crewneck',      type: "Crewneck",  price: 72,  badge: "Limited",  color: "#0D1A3A", sizes: ["S","M","L","XL"],       description: "Enzyme-washed fleece with that perfectly broken-in feel. Puff print 'Bad Decisions' across chest. Because someone had to say it.", category: "tops" },
+  { id: 4,  name: '"Bad Decisions" Vintage Wash Crewneck',      type: "Crewneck",  price: 72,  badge: "Limited",  color: "#0D1A3A", sizes: ["S","M","L","XL"],       description: "Enzyme-washed fleece with that perfectly broken-in feel. Puff print 'Bad Decisions' across chest. Because someone had to say it.", category: "tops", image: "/products/crewneck_sweater_bad_decisions.png" },
   { id: 5,  name: '"Send It" Swim Trunks',                      type: "Swim",      price: 58,  badge: "New",      color: C.blue,    sizes: ["S","M","L","XL"],       description: "Quick-dry recycled poly. 7\" inseam. All-over SLYC wave pattern. Built for lake days, yacht parties you weren't invited to, and hotel pools at 2am.", category: "bottoms" },
   { id: 6,  name: "SLYC Flagship Hoodie — Orange",              type: "Hoodie",    price: 85,  badge: null,       color: C.orange,  sizes: ["S","M","L","XL","XXL"], description: "Same heavyweight build as the classic, now in SLYC orange. Impossible to miss. That's the point.", category: "tops" },
   { id: 7,  name: '"Lake Life" Trucker Hat',                    type: "Hat",       price: 32,  badge: null,       color: C.navyMid, sizes: ["One Size"],             description: "Foam front, mesh back. Snapback. Curved brim. Embroidered 'Lake Life' script with SLYC anchor detail.", category: "accessories" },
@@ -64,7 +64,10 @@ function ProductImage({ product, style = {}, showQuick = true, onClick }) {
       onMouseLeave={() => setHovered(false)}
       onClick={onClick}
     >
-      <span style={{ fontSize: 22, fontWeight: 900, color: C.white, letterSpacing: 4, opacity: hovered ? 0.25 : 0.12, transition: "all 0.5s", transform: hovered ? "scale(1.1)" : "scale(1)", display: "inline-block" }}>SLYC</span>
+      {product.image
+        ? <img src={product.image} alt={product.name} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s", transform: hovered ? "scale(1.05)" : "scale(1)" }} />
+        : <span style={{ fontSize: 22, fontWeight: 900, color: C.white, letterSpacing: 4, opacity: hovered ? 0.25 : 0.12, transition: "all 0.5s", transform: hovered ? "scale(1.1)" : "scale(1)", display: "inline-block" }}>SLYC</span>
+      }
       {product.badge && (
         <span style={{ position: "absolute", top: 16, left: 16, background: product.badge === "Sold Out" ? C.textMuted : C.orange, color: C.white, fontSize: 9, letterSpacing: 2, textTransform: "uppercase", padding: "6px 12px", fontWeight: 600 }}>
           {product.badge}
